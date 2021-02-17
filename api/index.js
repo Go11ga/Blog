@@ -1,27 +1,23 @@
 const express = require('express')
+const consola = require('consola')
+const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
+const keys = require('./keys')
 
-// // Create express instance
+mongoose.connect(keys.MONGO_URI, {
+  useNewUrlParser: true, 
+  useUnifiedTopology: true
+})
+  .then(() => console.log('MongoDB connected'))
+  .catch(error => console.error(error))
+
 const app = express()
+const PORT = process.env.PORT || 3000
 
-console.log('express')
-// // Require API routes
-// const users = require('./routes/users')
-// const test = require('./routes/test')
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 
-// // Import API Routes
-// app.use(users)
-// app.use(test)
-
-// // Export express app
-module.exports = app
-
-// // Start standalone server if directly running
-// if (require.main === module) {
-//   const port = process.env.PORT || 3001
-//   app.listen(port, () => {
-//     console.log(`API server listening on port ${port}`)
-//   })
-// }
-
-
-
+consola.ready({
+  message: `Server listening on http://${PORT}`,
+  badge: true
+})
