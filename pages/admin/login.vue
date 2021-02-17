@@ -42,8 +42,8 @@ export default {
     return {
       loading: false,
       controls: {
-        login: '',
-        password: ''
+        login: 'qwerty',
+        password: 'qwerty'
       },
       rules: {
         login: [
@@ -72,7 +72,7 @@ export default {
     onSubmit () {
       this.$refs.form.validate(async valid => {
         if (valid) {
-          this.loading = true
+          // this.loading = true
 
           try {
             const formData = {
@@ -84,7 +84,7 @@ export default {
             this.$router.push('/admin')
 
           } catch(e) {
-            this.loading = false
+            // this.loading = false
           }
         }
       })

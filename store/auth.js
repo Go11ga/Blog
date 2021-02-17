@@ -1,5 +1,5 @@
 export const state = () => ({
-  token: true
+  token: null
 })
 
 export const getters = {
@@ -19,7 +19,7 @@ export const actions = {
   async login({ commit, dispatch }, formData) {
     try {
       const { token } = this.$axios.$post('/api/auth/admin/login', formData)
-      console.log(token)
+      console.log('token', token)
 
       dispatch('setToken', token)
     } catch(e) {
